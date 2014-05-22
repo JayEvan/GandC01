@@ -1,16 +1,21 @@
 # Coursera Getting and Cleaning Data Course Project
-## JayEvan created May 7, 2014
-## UCI HAR Dataset
-## Davide Anguita, Alessandro Ghio, Luca Oneto, Xavier Parra and Jorge L. Reyes-Ortiz. 
-## Human Activity Recognition on Smartphones using a Multiclass Hardware-Friendly 
-## Support Vector Machine. International Workshop of Ambient Assisted Living (IWAAL 2012). 
-## Vitoria-Gasteiz, Spain. Dec 2012
-
+# JayEvan created May 7, 2014
+# UCI HAR Dataset
+# Davide Anguita, Alessandro Ghio, Luca Oneto, Xavier Parra and Jorge L. Reyes-Ortiz. 
+# Human Activity Recognition on Smartphones using a Multiclass Hardware-Friendly 
+# Support Vector Machine. International Workshop of Ambient Assisted Living (IWAAL 2012). 
+# Vitoria-Gasteiz, Spain. Dec 2012
+#You should create one R script called run_analysis.R that does the following. 
+## 1. Merges the training and the test sets to create one data set.
+## 2. Extracts only the measurements on the mean and standard deviation for each measurement. 
+## 3. Uses descriptive activity names to name the activities in the data set
+## 4. Appropriately labels the data set with descriptive activity names. 
+## 5. Creates a second, independent tidy data set with the average of each variable for each activity and each subject. 
 library(doBy)
 library(plyr)
 library(reshape2)
 
-## Data and experiment are described in four files.
+## Data and experiment information.
 file.show("./UCI HAR Dataset/features_info.txt")
 file.show("./UCI HAR Dataset/README.txt")
 
@@ -25,8 +30,8 @@ features <- read.table("./UCI HAR Dataset/features.txt", header = FALSE)  # crea
 ## only want "mean()" and "std()" features, so find these strings in feature names.
 ## some uncertainty in assignment about other features derived from mean and std statistics.
 ## also mean and std are referred to as measurements on measurements, which is ambiguous
-select1 <- grep("mean()", features$V2, fixed = TRUE) #get feature numbers with "mean" in name
-select2 <- grep("std()", features$V2, fixed = TRUE) # get feature numbers with "std" in name
+select1 <- grep("mean()", features$V2, fixed = TRUE) #get feature numbers with "mean()" in name
+select2 <- grep("std()", features$V2, fixed = TRUE) # get feature numbers with "std()" in name
 select3 <- sort(c(select1, select2))
 featuresub <- features[select3,] # desired features data.frame
 featurecolumns <- featuresub[,1]  # just the column numbers
@@ -62,7 +67,7 @@ table(Y_train)
 X_test <- read.table("./UCI HAR Dataset/test/X_test.txt", header = FALSE) ## data.frame of 2947 observations of 561 variables.
 X_test <- X_test[,featurecolumns]  ## shrink to desired 66 features
 names(X_test) <- featurenames  ## set the featurenames
-X_train <- read.table("./UCI HAR Dataset/train/X_train.txt", header = FALSE)## data.frame of 7352 observations of 561 variables
+X_train <- read.table("./UCI HAR Dataset/train/X_train.txt", header = FALSE) ## data.frame of 7352 observations of 561 variables
 X_train <- X_train[,featurecolumns]  ## shrink to desired 66 features
 names(X_train) <- featurenames  ## set the featurenames
 

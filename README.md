@@ -4,6 +4,8 @@ This repo is created in fulfillment of Coursera Getting and Clean Data, course p
 
 The project utilizes the data contained in https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip.
 
+An script for accomplishing the project run_analysis.R can be sourced.
+
 The data are 561 features extracted from accelerometer and gyroscope readings in fixed time windows during six activities performed by 30 subjects divided into test and train groups
 
 Data is contained in 3 files for each group 
